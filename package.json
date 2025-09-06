@@ -6,19 +6,25 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "nest build",
-    "start": "nest start",
-    "start:dev": "nest start --watch"
+    "prisma:studio": "prisma studio",
+    "prisma:generate": "prisma generate",
+    "migrate": "prisma migrate dev",
+    "build": "npm run prisma:generate && npm run migrate && nest build",
+    "start:dev": "nest start --watch",
+    "dev": "npm run prisma:generate && npm run migrate && nest start --watch",
+    "start:prod": "node dist/main"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.1",
+    "@nestjs/jwt": "^11.0.0",
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/schedule": "^6.0.0",
     "@nestjs/throttler": "^6.4.0",
     "@nestjs/websockets": "^11.1.6",
     "@prisma/client": "^6.15.0",
+    "class-validator": "^0.14.2",
     "ioredis": "^5.7.0",
     "kafkajs": "^2.2.4",
     "nodemailer": "^7.0.6",
